@@ -1,9 +1,6 @@
 package jpabook;
 
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
-import jpabook.jpashop.domain.Team;
+import jpabook.jpashop.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,6 +20,12 @@ public class JpaMain {
 
             Order order = new Order();
             order.addOrderItem(new OrderItem()); // 연관관계 편의 메서드
+
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+
+            em.persist(book);
 
             em.persist(order);
             tx.commit();

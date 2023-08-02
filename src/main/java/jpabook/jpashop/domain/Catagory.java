@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Catagory {
+public class Catagory extends BaseEntity{
 
     @Id
     @GeneratedValue
