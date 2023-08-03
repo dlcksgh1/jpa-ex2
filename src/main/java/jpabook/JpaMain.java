@@ -18,16 +18,22 @@ public class JpaMain {
 
         try{
 
-            Order order = new Order();
-            order.addOrderItem(new OrderItem()); // 연관관계 편의 메서드
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            em.persist(book);
+            em.persist(parent);
+            // em.persist(child1); 생략 가능
+            // em.persist(child2);
+            em.flush();
+            em.clear();
 
-            em.persist(order);
+            Parent findParent = em.find(Parent.class, parent.getId());
+            findParent.getChildList().remove(0);
+
             tx.commit();
         }catch (Exception e){
             tx.rollback();
